@@ -13,10 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Random;
 
@@ -49,7 +46,7 @@ public class BadIOGUI {
         final JButton write = new JButton("Write on file");
         box.add(write);
         final JButton read = new JButton("Read from file");
-        box.add(read);        
+        box.add(read);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*
@@ -77,14 +74,12 @@ public class BadIOGUI {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 try {
-                    final List<String> lines = Files.readAllLines(new File(PATH).toPath(),StandardCharsets.UTF_8);
-                    System.out.println(lines);
-                } catch (Exception e1) {
+                    final List<String> lines = Files.readAllLines(new File(PATH).toPath(), StandardCharsets.UTF_8);
+                    System.out.println(lines); // NOPMD: allowed as this is just an exercise
+                } catch (IOException e1) {
                     JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
                     e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
                 }
-                
-                
             }
         });
     }
